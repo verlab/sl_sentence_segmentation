@@ -1,4 +1,4 @@
-# Video Segmentation in Brazilian Sign Language
+# Sign Language Video Segmentation
 
 Implementation and evaluation of models for automatic segmentation of continuous sign language into sentence units.
 
@@ -6,7 +6,6 @@ Implementation and evaluation of models for automatic segmentation of continuous
 
 - `sl-segmentation`: Implementation of the segmentation model based in optical flow and experiments.
 - `st-gcn`: Implementation of a segmentation model that uses spatio-temporal graph convolutional networks for processing pose sequences and experiments.
-- `utils`: General utilities for data processing.
 
 ## `sl-segmentation`
 **Real-Time Sign Language Detection using Human Pose Estimation ([Code](https://github.com/google-research/google-research/tree/master/sign_language_detection))**
