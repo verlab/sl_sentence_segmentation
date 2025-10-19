@@ -59,7 +59,7 @@ def get_arguments():
     parser.add_argument('--which_keypoints', type=str, help='Specify "body", "headbody", "bodyhands", "headface" or "full".', default='full')
     parser.add_argument('--legs_and_feet', type=bool, help='If the original data includes hands and feet keypoints', default=False)
     parser.add_argument('--num_layers', type=int, help='Number of LSTM layers', default=1)
-    parser.add_argument('--st_gcn_layers', type=int, help='Number of ST-GCN layers', default=10)
+    parser.add_argument('--st_gcn_layers', type=int, help='Number of ST-GCN layers', default=9)
     parser.add_argument('--hidden_size', type=int, help='Hidden size for LSTM', default=64)
     parser.add_argument('--bidirectional', type=bool, help='If the LSTM layers are bidirectional', default=False)
     parser.add_argument('--model_path', type=str, help='Path to save the model')
