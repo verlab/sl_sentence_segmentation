@@ -19,7 +19,7 @@ def get_arguments():
     parser.add_argument('--legs_and_feet', type=bool, help='If the original data includes hands and feet keypoints', default=False)
     parser.add_argument('--class_weight', type=float, help='Weight of the minority class', default=5.0)
     parser.add_argument('--num_layers', type=int, help='Number of LSTM layers', default=1)
-    parser.add_argument('--st_gcn_layers', type=int, help='Number of ST-GCN layers', default=10)
+    parser.add_argument('--st_gcn_layers', type=int, help='Number of ST-GCN layers', default=9)
     parser.add_argument('--hidden_size', type=int, help='Hidden size for LSTM', default=64)
     parser.add_argument('--bidirectional', type=bool, help='If the LSTM layers are bidirectional', default=False)
     parser.add_argument('--num_epochs', type=int, help='Number of epochs', default=50)
@@ -88,7 +88,7 @@ num_layers = argument_list['num_layers']
 bidirectional = argument_list['bidirectional']
 st_gcn_layers = argument_list['st_gcn_layers']
 
-if st_gcn_layers not in (2,4,10):
+if st_gcn_layers not in (1,3,9):
     print(f'No configuration for ST-GCN with {st_gcn_layers} layers.')
     exit()
 
