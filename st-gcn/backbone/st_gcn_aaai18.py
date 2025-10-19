@@ -40,7 +40,7 @@ class ST_GCN_18(nn.Module):
                  graph_cfg,
                  hidden_size=64,
                  num_layers=1,
-                 st_gcn_layers=10,
+                 st_gcn_layers=9,
                  bidirectional=False,
                  edge_importance_weighting=True,
                  data_bn=True,
@@ -61,7 +61,7 @@ class ST_GCN_18(nn.Module):
         self.data_bn = nn.BatchNorm1d(in_channels *
                                       A.size(1)) if data_bn else iden
         kwargs0 = {k: v for k, v in kwargs.items() if k != 'dropout'}
-        if st_gcn_layers == 10:
+        if st_gcn_layers == 9:
             self.st_gcn_networks = nn.ModuleList((
                 st_gcn_block(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
                 st_gcn_block(64, 64, kernel_size, 1, **kwargs),
@@ -74,14 +74,14 @@ class ST_GCN_18(nn.Module):
                 st_gcn_block(256, 256, kernel_size, 1, **kwargs),
                 st_gcn_block(256, 256, kernel_size, 1, **kwargs),
             ))
-        elif st_gcn_layers == 4:
+        elif st_gcn_layers == 3:
             self.st_gcn_networks = nn.ModuleList((
                 st_gcn_block(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
                 st_gcn_block(64, 64, kernel_size, 1, **kwargs),
                 st_gcn_block(64, 128, kernel_size, 1, **kwargs),
                 st_gcn_block(128, 128, kernel_size, 1, **kwargs)
             ))
-        elif st_gcn_layers == 2:
+        elif st_gcn_layers == 1:
             self.st_gcn_networks = nn.ModuleList((
                 st_gcn_block(in_channels, 64, kernel_size, 1, residual=False, **kwargs0),
                 st_gcn_block(64, 128, kernel_size, 1, **kwargs)
@@ -97,12 +97,12 @@ class ST_GCN_18(nn.Module):
             self.edge_importance = [1] * len(self.st_gcn_networks)
 
         # LSTM
-        if st_gcn_layers == 10:
+        if st_gcn_layers == 9:
             self.lstm = SimpleLSTM(emb_dim=256,
                                    hidden_size=hidden_size,
                                    num_layers=num_layers,
                                    bidirectional=bidirectional)
-        elif st_gcn_layers in (2,4):
+        elif st_gcn_layers in (1,3):
             self.lstm = SimpleLSTM(emb_dim=128,
                                    hidden_size=hidden_size,
                                    num_layers=num_layers,
